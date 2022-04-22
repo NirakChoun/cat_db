@@ -61,7 +61,7 @@ def get_cat(id):
     return result
 
 
-def update_cat(cat_info):
+def update_cat(cat_info):  # by Song Rithykun
     '''
     TODO:
     cat_info is in a form of list ex: [1,"rose", "f", "Siberian", "2020-03-08", "smart one"], that update_cat function will use as 
@@ -73,16 +73,16 @@ def update_cat(cat_info):
     mydb.commit()
     print("Successfully updated")
 
-
-def remove_cat(id):
+def remove_cat(id):   #by SONG Rithykun
     '''
     TODO:
     this function will remove record from cat table base on id parameter.
     '''
-    sql = f"DELETE FROM cats WHERE id = '{id}' "
-    cursor.execute(sql)
-    mydb.commit()
-    print("Successfully removed")
+    
+    sql = "DELETE FROM cats WHERE id = {id}"
 
+    cursor.execute(sql)
+
+    mydb.commit()   
 
 
