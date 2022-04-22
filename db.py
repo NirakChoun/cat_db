@@ -19,7 +19,7 @@ mydb = mysql.connector.connect(
     password="root",
     database="cat_db",
     port="8889"
-)
+print (mydb)
 
 
 cursor = mydb.cursor()
