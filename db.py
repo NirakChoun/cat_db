@@ -19,56 +19,70 @@ mydb = mysql.connector.connect(
     password="root",
     database="cat_db",
     port="8889"
-print (mydb)
+)
 
 
 cursor = mydb.cursor()
 
 
 def register_cat(cat_info):
+    '''
+    TODO:
+    cat_info is in a form of list ex: ["rose", "f", "Siberian", "2020-03-08", "smart one"], that register_cat function will insert the provided
+    list to cats table as an insert record.
+    '''
     sql = "INSERT INTO cats (name, gender, breed, dob, description) VALUES (%s, %s, %s, %s, %s)"
     cursor.execute(sql, cat_info)
-
     mydb.commit()
-    print("Register Completed!\n")
+    print("Register completed")
 
 
 
 def get_cats():
+    '''
+    TODO:
+    this function will get all cat from cats table 
+    '''
     sql = "SELECT * FROM cats"
     cursor.execute(sql)
     myresult = cursor.fetchall()
-
-    return(myresult)
+    return myresult
 
 
 
 def get_cat(id):
-    sql = "SELECT * FROM cats"
+    '''
+    TODO:
+    this function will get a single cat data from cat table base on the id parameter
+    '''
+    sql = f"SELECT * FROM cats WHERE {id}"
     cursor.execute(sql)
-    myresult = cursor.fetchone()
-
-    return(myresult)
+    result = cursor.fetchone()
+    return result
 
 
 def update_cat(cat_info):
-
+    '''
+    TODO:
+    cat_info is in a form of list ex: [1,"rose", "f", "Siberian", "2020-03-08", "smart one"], that update_cat function will use as 
+    an update record for specific cat information where equal to cat_info[0]
+    '''
     id, name, gender, breed, dob, description = cat_info
-    
-    sql = f"UPDATE cats SET name = '{name}', gender = '{gender}', breed = '{breed}', dob = '{dob}', description = '{description}' WHERE id = '{id}'"
-
+    sql = f"UPDATE cats SET name = '{name}', gender = '{gender}', breed = '{breed}', dob ='{dob}',description = '{description}' Where id = '{id}' "
     cursor.execute(sql)
-
     mydb.commit()
+    print("Successfully updated")
 
 
 def remove_cat(id):
-    
-    sql = "DELETE FROM cats WHERE id = {id}"
-
+    '''
+    TODO:
+    this function will remove record from cat table base on id parameter.
+    '''
+    sql = f"DELETE FROM cats WHERE id = '{id}' "
     cursor.execute(sql)
-
     mydb.commit()
+    print("Successfully removed")
 
 
 
